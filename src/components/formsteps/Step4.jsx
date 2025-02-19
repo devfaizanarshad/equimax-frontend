@@ -5,7 +5,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { motion } from "framer-motion";
 
-const quickAmounts = [100000, 250000, 500000, 750000, 1000000];
+const quickAmounts = [300000, 1000000, 5000000, 20000000, 50000000, 100000000];
 
 const Step4 = () => {
   const { formData, setFormData } = useFormContext();
@@ -28,10 +28,10 @@ const Step4 = () => {
         initialValues={{ loanAmount: formData.loanAmount || 250000 }}
         validationSchema={Yup.object({
           loanAmount: Yup.number()
-            .min(100000, "Minimum amount is $100,000")
-            .max(5000000, "Maximum amount is $5,000,000")
+            .min(300000, "Minimum amount is $300,000")
+            .max(100000000, "Maximum amount is $100,000,000")  // Updated max value
             .required("Please enter a loan amount"),
-        })}
+        })}        
         onSubmit={(values) => {
           setFormData({ ...formData, ...values });
           navigate("/step5");
@@ -67,8 +67,8 @@ const Step4 = () => {
               <Field
                 name="loanAmount"
                 type="number"
-                min="100000"
-                max="5000000"
+                min="300000"
+                max="100000000"
                 step="50000"
                 className="w-full sm:w-2/3 text-center text-lg sm:text-xl font-semibold py-2 border rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                 value={values.loanAmount}
@@ -83,8 +83,8 @@ const Step4 = () => {
             <div className="mt-2">
               <input
                 type="range"
-                min="100000"
-                max="5000000"
+                min="300000"
+                max="100000000"
                 step="50000"
                 value={values.loanAmount}
                 onChange={(e) => setFieldValue("loanAmount", Number(e.target.value))}

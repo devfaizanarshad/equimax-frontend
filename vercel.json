@@ -1,12 +1,10 @@
-{   
+{
     "version": 2,
     "builds": [
-      { "src": "*.js", "use": "@vercel/node" }
+      { "src": "package.json", "use": "@vercel/static-build" }
     ],
     "routes": [
-        { "src": "/.*", "dest": "/" }
-    ],
-    "regions": [
-        "sfo1"
+      { "src": "/(.*)", "dest": "/index.html" }
     ]
-}
+  }
+  

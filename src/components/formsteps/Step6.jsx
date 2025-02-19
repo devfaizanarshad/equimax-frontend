@@ -5,20 +5,16 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { motion } from "framer-motion";
 
-const states = [
-  "California", "Nevada", "Idaho", "Texas", "Arizona",
-  "New York", "Florida", "Georgia", "Illinois", "Colorado",
-  "Washington", "Oregon", "Michigan", "Ohio", "Pennsylvania"
-];
+const states = ["California", "Nevada", "Idaho", "Texas", "Arizona"];
 
 const Step6 = () => {
   const { formData, setFormData } = useFormContext();
   const navigate = useNavigate();
 
   return (
-    <div className="max-w-3xl mx-auto bg-white rounded-2xl p-10">
+    <div className="max-w-2xl mx-auto bg-white rounded-3xl p-8 sm:p-10">
       <motion.h2
-        className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-4"
+        className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-6"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
@@ -30,7 +26,9 @@ const Step6 = () => {
       </p>
       <Formik
         initialValues={{ propertyState: formData.propertyState }}
-        validationSchema={Yup.object({ propertyState: Yup.string().required("Please select a state.") })}
+        validationSchema={Yup.object({
+          propertyState: Yup.string().required("Please select a state."),
+        })}
         onSubmit={(values) => {
           setFormData({ ...formData, ...values });
           navigate("/step7");
@@ -38,18 +36,18 @@ const Step6 = () => {
       >
         {({ values, setFieldValue }) => (
           <Form className="space-y-8">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {states.map((state) => (
                 <motion.button
                   key={state}
                   type="button"
                   onClick={() => setFieldValue("propertyState", state)}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className={`py-3 px-2 rounded-lg border text-sm sm:text-base font-medium transition-all duration-200 shadow-sm ${
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`flex items-center justify-center py-4 px-3 rounded-2xl border transition-all duration-200 shadow-sm text-sm sm:text-base font-semibold text-center leading-tight whitespace-nowrap ${
                     values.propertyState === state
-                      ? "bg-green-600 border-green-600 text-white"
-                      : "bg-gray-50 border-gray-300 text-gray-800 hover:border-green-500 hover:bg-green-50"
+                      ? "bg-green-600 text-white border-green-600"
+                      : "bg-gray-100 text-gray-800 border-gray-300 hover:bg-green-50 hover:border-green-500"
                   }`}
                 >
                   {state}
@@ -61,7 +59,7 @@ const Step6 = () => {
               <button
                 type="button"
                 onClick={() => navigate(-1)}
-                className="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg text-sm sm:text-base font-medium shadow hover:bg-gray-300"
+                className="bg-gray-200 text-gray-700 px-5 py-2 rounded-lg text-sm sm:text-base font-medium shadow hover:bg-gray-300 transition"
               >
                 Previous
               </button>

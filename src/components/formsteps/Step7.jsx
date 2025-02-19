@@ -8,7 +8,7 @@ import { FaGlobe, FaPhoneAlt, FaEnvelope, FaUserFriends, FaNewspaper, FaBullhorn
 
 const referralOptions = [
   { label: "Online Search", icon: <FaGlobe />, description: "Found us via search engines like Google." },
-  { label: "Phone Call", icon: <FaPhoneAlt />, description: "Referred through a direct phone call." },
+  { label: "Phone", icon: <FaPhoneAlt />, description: "Referred through a call or text" },
   { label: "Email", icon: <FaEnvelope />, description: "Received information through an email." },
   { label: "Friend/Family", icon: <FaUserFriends />, description: "Recommended by someone you know." },
   { label: "Advertisement", icon: <FaNewspaper />, description: "Saw an ad on various platforms." },
