@@ -4,14 +4,14 @@ import { FormProvider } from "./components/context/FormContext.jsx";
 import ProgressBar from "./components/ProgressBar.jsx";
 import SuccessPage from "./components/SuccessPage.jsx";
 import Header from "./components/Header.jsx";
-import Step1 from "./components/formSteps/Step1.jsx";
-import Step2 from "./components/formSteps/Step2.jsx";
-import Step3 from "./components/formSteps/Step3.jsx";
-import Step4 from "./components/formSteps/Step4.jsx";
-import Step5 from "./components/formSteps/Step5.jsx";
-import Step6 from "./components/formSteps/Step6.jsx";
-import Step7 from "./components/formSteps/Step7.jsx";
-import Step8 from "./components/formSteps/Step8.jsx";
+import Step1 from "./components/formsteps/Step1.jsx";
+import Step2 from "./components/formsteps/Step2.jsx";
+import Step3 from "./components/formsteps/Step3.jsx";
+import Step4 from "./components/formsteps/Step4.jsx";
+import Step5 from "./components/formsteps/Step5.jsx";
+import Step6 from "./components/formsteps/Step6.jsx";
+import Step7 from "./components/formsteps/Step7.jsx";
+import Step8 from "./components/formsteps/Step8.jsx";
 
 function App() {
   return (
