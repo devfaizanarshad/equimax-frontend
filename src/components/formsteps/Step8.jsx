@@ -30,7 +30,7 @@ const Step8 = () => {
       setFormData({ ...formData, ...values });
 
       // Send data to the API
-      const response = await axios.post("http://localhost:5000/api/submit-form", {
+      const response = await axios.post("https://equimax-backend-fkqp.vercel.app/api/submit-form", {
         ...formData,
         ...values,
       });
