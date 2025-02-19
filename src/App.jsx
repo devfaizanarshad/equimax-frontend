@@ -1,17 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { FormProvider } from "./components/context/FormContext";
-import ProgressBar from "./components/ProgressBar";
-import SuccessPage from "./components/SuccessPage";
-import Header from "./components/Header";
-import Step1 from "./components/formSteps/Step1";
-import Step2 from "./components/formSteps/Step2";
-import Step3 from "./components/formSteps/Step3";
-import Step4 from "./components/formSteps/Step4";
-import Step5 from "./components/formSteps/Step5";
-import Step6 from "./components/formSteps/Step6";
-import Step7 from "./components/formSteps/Step7";
-import Step8 from "./components/formSteps/Step8";
+import { FormProvider } from "./components/context/FormContext.jsx";
+import ProgressBar from "./components/ProgressBar.jsx";
+import SuccessPage from "./components/SuccessPage.jsx";
+import Header from "./components/Header.jsx";
+import Step1 from "./components/formSteps/Step1.jsx";
+import Step2 from "./components/formSteps/Step2.jsx";
+import Step3 from "./components/formSteps/Step3.jsx";
+import Step4 from "./components/formSteps/Step4.jsx";
+import Step5 from "./components/formSteps/Step5.jsx";
+import Step6 from "./components/formSteps/Step6.jsx";
+import Step7 from "./components/formSteps/Step7.jsx";
+import Step8 from "./components/formSteps/Step8.jsx";
 
 function App() {
   return (
