@@ -8,7 +8,7 @@ import { FaGlobe, FaPhoneAlt, FaEnvelope, FaUserFriends, FaNewspaper, FaBullhorn
 
 const referralOptions = [
   { label: "Online Search", icon: <FaGlobe />, description: "Found us via search engines like Google." },
-  { label: "Phone", icon: <FaPhoneAlt />, description: "Referred through a call or text" },
+  { label: "Phone", icon: <FaPhoneAlt />, description: "Referred through a call or text." },
   { label: "Email", icon: <FaEnvelope />, description: "Received information through an email." },
   { label: "Friend/Family", icon: <FaUserFriends />, description: "Recommended by someone you know." },
   { label: "Advertisement", icon: <FaNewspaper />, description: "Saw an ad on various platforms." },
@@ -40,32 +40,36 @@ const Step7 = () => {
           navigate("/step8");
         }}
       >
-        {({ values, setFieldValue }) => (
+        {({ setFieldValue }) => (
           <Form className="space-y-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {referralOptions.map(({ label, icon, description }) => (
                 <motion.button
                   key={label}
                   type="button"
-                  onClick={() => setFieldValue("referralSource", label)}
+                  onClick={() => {
+                    setFieldValue("referralSource", label);
+                    setFormData((prev) => ({ ...prev, referralSource: label }));
+                    navigate("/step8");
+                  }}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   className={`flex flex-col items-center justify-between gap-3 p-5 rounded-xl border-2 shadow-sm transition-all duration-200 ${
-                    values.referralSource === label
+                    formData.referralSource === label
                       ? "bg-green-600 border-green-600 text-white"
                       : "bg-gray-50 border-gray-300 text-gray-800 hover:border-green-500 hover:bg-green-50"
                   }`}
                 >
-                  <div className={`text-3xl ${values.referralSource === label ? "text-white" : "text-green-600"}`}>{icon}</div>
+                  <div className={`text-3xl ${formData.referralSource === label ? "text-white" : "text-green-600"}`}>{icon}</div>
                   <h3 className="text-sm sm:text-base font-semibold text-center leading-tight">{label}</h3>
-                  <p className={`text-xs sm:text-sm text-center ${values.referralSource === label ? "text-green-100" : "text-gray-500"}`}>
+                  <p className={`text-xs sm:text-sm text-center ${formData.referralSource === label ? "text-green-100" : "text-gray-500"}`}>
                     {description}
                   </p>
                 </motion.button>
               ))}
             </div>
 
-            <div className="flex justify-between mt-6">
+            <div className="flex justify-start mt-6">
               <button
                 type="button"
                 onClick={() => navigate(-1)}
@@ -73,13 +77,6 @@ const Step7 = () => {
               >
                 Previous
               </button>
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-r from-green-500 to-green-700 text-white px-8 py-3 rounded-lg text-sm sm:text-base font-semibold shadow-lg hover:from-green-600 hover:to-green-800"
-              >
-                Continue
-              </motion.button>
             </div>
           </Form>
         )}

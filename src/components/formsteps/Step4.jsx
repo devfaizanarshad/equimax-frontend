@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useFormContext } from "../context/FormContext.jsx";
 import { Formik, Form, Field } from "formik";
@@ -10,6 +10,13 @@ const quickAmounts = [300000, 1000000, 5000000, 20000000, 50000000, 100000000];
 const Step4 = () => {
   const { formData, setFormData } = useFormContext();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Save loanAmount to context if valid when returning to Step4
+    if (formData.loanAmount >= 300000 && formData.loanAmount <= 100000000) {
+      setFormData((prev) => ({ ...prev, loanAmount: formData.loanAmount }));
+    }
+  }, [formData.loanAmount, setFormData]);
 
   return (
     <div className="max-w-2xl mx-auto bg-white rounded-2xl p-10">
@@ -24,16 +31,17 @@ const Step4 = () => {
       <p className="text-center text-gray-500 mb-8 text-sm sm:text-base">
         Select the total loan amount you are applying for.
       </p>
+
       <Formik
         initialValues={{ loanAmount: formData.loanAmount || 250000 }}
         validationSchema={Yup.object({
           loanAmount: Yup.number()
             .min(300000, "Minimum amount is $300,000")
-            .max(100000000, "Maximum amount is $100,000,000")  // Updated max value
+            .max(100000000, "Maximum amount is $100,000,000")
             .required("Please enter a loan amount"),
-        })}        
+        })}
         onSubmit={(values) => {
-          setFormData({ ...formData, ...values });
+          setFormData((prev) => ({ ...prev, loanAmount: values.loanAmount }));
           navigate("/step5");
         }}
       >
@@ -45,7 +53,11 @@ const Step4 = () => {
                 <motion.button
                   key={amount}
                   type="button"
-                  onClick={() => setFieldValue("loanAmount", amount)}
+                  onClick={() => {
+                    setFieldValue("loanAmount", amount);
+                    setFormData((prev) => ({ ...prev, loanAmount: amount }));
+                    navigate("/step5");
+                  }}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   className={`py-3 rounded-xl border text-center font-medium transition-all duration-200 shadow-sm ${
@@ -96,18 +108,11 @@ const Step4 = () => {
             <div className="flex justify-between mt-6">
               <button
                 type="button"
-                onClick={() => navigate(-1)}
+                onClick={() => navigate("/step3")}  // Use explicit path for reliability
                 className="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg text-sm sm:text-base font-medium shadow hover:bg-gray-300"
               >
                 Previous
               </button>
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-r from-green-500 to-green-700 text-white px-8 py-3 rounded-lg text-sm sm:text-base font-semibold shadow-lg hover:from-green-600 hover:to-green-800"
-              >
-                Continue
-              </motion.button>
             </div>
           </Form>
         )}

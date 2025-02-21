@@ -36,45 +36,32 @@ const Step1 = () => {
           navigate("/step2");
         }}
       >
-        {({ values, setFieldValue }) => (
+        {({ setFieldValue }) => (
           <Form className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {options.map(({ label, icon }) => (
                 <motion.button
                   key={label}
                   type="button"
-                  onClick={() => setFieldValue("borrowerType", label)}
+                  onClick={() => {
+                    setFieldValue("borrowerType", label);
+                    setFormData({ ...formData, borrowerType: label });
+                    navigate("/step2");  // Auto-navigate after selection
+                  }}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   className={`flex flex-col items-center justify-center p-5 rounded-xl border text-base font-medium transition-all duration-200 shadow-sm ${
-                    values.borrowerType === label
+                    formData.borrowerType === label
                       ? "bg-green-600 border-green-600 text-white"
                       : "bg-gray-50 border-gray-300 text-gray-800 hover:border-green-500 hover:bg-green-50"
                   }`}
                 >
-                  <div className={`text-3xl mb-2 ${values.borrowerType === label ? "text-white" : "text-green-600"}`}>{icon}</div>
-                  <span className="text-sm sm:text-base font-semibold">
-                    {label}
-                  </span>
+                  <div className={`text-3xl mb-2 ${formData.borrowerType === label ? "text-white" : "text-green-600"}`}>
+                    {icon}
+                  </div>
+                  <span className="text-sm sm:text-base font-semibold">{label}</span>
                 </motion.button>
               ))}
-            </div>
-
-            <div className="flex justify-between mt-6">
-              <button
-                type="button"
-                onClick={() => navigate(-1)}
-                className="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg text-sm sm:text-base font-medium shadow hover:bg-gray-300"
-              >
-                Previous
-              </button>
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-r from-green-500 to-green-700 text-white px-8 py-3 rounded-lg text-sm sm:text-base font-semibold shadow-lg hover:from-green-600 hover:to-green-800"
-              >
-                Continue
-              </motion.button>
             </div>
           </Form>
         )}

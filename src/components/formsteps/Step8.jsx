@@ -16,7 +16,6 @@ const Step8 = () => {
     fullName: Yup.string().required("Full name is required."),
     email: Yup.string().email("Invalid email address.").required("Email is required."),
     phone: Yup.string()
-      .matches(/^[0-9]{10}$/, "Phone number must be 10 digits.")
       .required("Phone number is required."),
     consent: Yup.boolean().oneOf([true], "Consent is required."),
   });
