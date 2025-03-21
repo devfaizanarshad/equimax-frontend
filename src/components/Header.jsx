@@ -16,8 +16,7 @@ export default function Header() {
     "Recent Closings",
     "Loans Funded",
     "Loan Programs",
-    "How It Works",
-    "Property Management"
+    "How It Works"
   ];
 
   return (
