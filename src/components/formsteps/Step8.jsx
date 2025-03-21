@@ -15,8 +15,6 @@ const Step8 = () => {
   const validationSchema = Yup.object({
     fullName: Yup.string().required("Full name is required."),
     email: Yup.string().email("Invalid email address.").required("Email is required."),
-    phone: Yup.string()
-      .required("Phone number is required."),
     consent: Yup.boolean().oneOf([true], "Consent is required."),
   });
 
@@ -29,6 +27,7 @@ const Step8 = () => {
       setFormData({ ...formData, ...values });
 
       // Send data to the API
+      // const response = await axios.post("http://localhost:5000/api/submit-form", {
       const response = await axios.post("https://equimax-backend-fkqp.vercel.app/api/submit-form", {
         ...formData,
         ...values,
@@ -136,7 +135,7 @@ const Step8 = () => {
                 />
                 <label htmlFor="consent" className="text-gray-700 text-sm leading-relaxed">
                   <strong>Authorization *</strong><br />
-                  By checking this box and clicking submit, I expressly agree to be contacted by telephone on my landline and/or cell phone by Equimax Management, regardless of whether my telephone number appears on any state or federal “Do Not Call” list. I further agree that Equimax Management may use an automated telephone dialing system or pre-recorded message to contact me via telephone or SMS/text. I understand that my consent to be contacted is not a requirement to purchase any goods or services, and standard cellular rates may apply.                </label>
+                  By checking this box and clicking submit, I expressly agree to be contacted by telephone on my landline and/or cell phone by Equimax Management, regardless of whether my telephone number appears on any state or federal “Do Not Call” list. I further agree that Equimax Management may use an automated telephone dialing system or pre-recorded message to contact me via telephone or SMS/text. I understand that my consent to be contacted is not a requirement to purchase any goods or services, and standard cellular rates may apply.</label>
               </div>
               <ErrorMessage name="consent" component="div" className="text-red-500 text-sm mt-1" />
             </div>

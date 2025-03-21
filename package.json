@@ -3,17 +3,18 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-"scripts": {
-  "build": "vite build",
-  "dev": "vite",
-  "start": "vite preview"
-},
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "start": "vite preview"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.7",
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
     "formik": "^2.4.6",
     "framer-motion": "^12.4.4",
+    "lucide-react": "^0.483.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
